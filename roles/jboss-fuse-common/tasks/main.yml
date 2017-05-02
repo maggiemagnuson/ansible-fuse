@@ -1,0 +1,9 @@
+---
+- name: Install common packages
+  yum: name={{ item }} state=present
+  with_items:
+    - vim
+    - perl
+    - libsemanage-python
+    - java-1.7.0-openjdk-headless
+    - unzip

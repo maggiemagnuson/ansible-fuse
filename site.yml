@@ -1,0 +1,14 @@
+---
+# This playbook preps a set of servers for JBoss Fuse 
+# and installs fuse on the ensemble servers
+#
+#
+
+- name: install JBoss Fuse
+  hosts: all
+  sudo: yes
+  gather_facts: no
+  
+  roles:
+    - jboss-fuse-common
+    - jboss-fuse-ensemble

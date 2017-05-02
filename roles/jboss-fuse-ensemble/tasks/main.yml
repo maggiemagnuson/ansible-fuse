@@ -1,0 +1,21 @@
+- name: Copy over JBoss Fuse 6.1
+  copy: src=fuse-6.1.zip dest=/opt/jboss-fuse-6.1.zip
+
+- name: Add group fuse
+  group: name=fuse state=present
+
+- name: Add user fuse
+  user: name=fuse group=fuse home=/home/fuse
+
+- name: Creates directory
+  file: path=/opt/fuse-6.1 state=directory owner=fuse group=fuse
+  
+- name: Extract the archive
+  unarchive: src=/opt/jboss-fuse-6.1.zip dest=/opt/fuse-6.1 copy=no
+
+- name: Create symbolic link
+  file: src=/opt/fuse-6.1/jboss-fuse-6.1.0.redhat-379 dest=/opt/fuse owner=fuse group=fuse state=link
+  
+- name: Change ownership of fuse installation
+  file: path=/opt/fuse-6.1 owner=fuse group=fuse state=directory recurse=yes
+
